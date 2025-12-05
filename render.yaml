@@ -1,0 +1,48 @@
+# Configuración de Render.com
+# Sistema de Gases Medicinales MSPBS
+
+services:
+  # Base de datos PostgreSQL
+  - type: pserv
+    name: gases-mspbs-db
+    env: docker
+    plan: free
+    databases:
+      - name: gases_mspbs
+        user: gases_mspbs_user
+  
+  # Backend API
+  - type: web
+    name: gases-mspbs-backend
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: gases-mspbs-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: KEEP_ALIVE_INTERVAL
+        value: 840
+      - key: DEBUG
+        value: false
+    
+  # Frontend (React)
+  - type: web
+    name: gases-mspbs-frontend
+    env: static
+    plan: free
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          type: web
+          name: gases-mspbs-backend
+          property: url
