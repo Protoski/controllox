@@ -1,14 +1,14 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import Login from './pages/Login.jsx';
-import Dashboard from './pages/Dashboard'
-import Consumos from './pages/Consumos'
-import Reportes from './pages/Reportes'
-import Usuarios from './pages/admin/Usuarios'
-import Hospitales from './pages/admin/Hospitales'
-import Gases from './pages/admin/Gases'
-import Auditoria from './pages/admin/Auditoria'
-import ProtectedRoute from './components/shared/ProtectedRoute'
+import Dashboard from './pages/Dashboard.jsx';
+import Consumos from './pages/Consumos.jsx';
+import Reportes from './pages/Reportes.jsx';
+import Usuarios from './pages/admin/Usuarios.jsx';
+import Hospitales from './pages/admin/Hospitales.jsx';
+import Gases from './pages/admin/Gases.jsx';
+import Auditoria from './pages/admin/Auditoria.jsx';
+import ProtectedRoute from './components/shared/ProtectedRoute.jsx';
 
 function App() {
   return (
