@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
-import Login from './pages/Login'
+import Login from './pages/Login.jsx';
 import Dashboard from './pages/Dashboard'
 import Consumos from './pages/Consumos'
 import Reportes from './pages/Reportes'
